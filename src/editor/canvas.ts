@@ -35,7 +35,7 @@ export default class Canvas extends EventEmitter {
     }
   }
 
-  adjust = (matches: boolean) => {
+  adjust = (matches: boolean): void => {
     const lgWidth = 600;
     const lgHeight = calculateFitSize(lgWidth);
     const smWidth = 300;
@@ -62,7 +62,7 @@ export default class Canvas extends EventEmitter {
     image: HTMLImageElement,
     angle = 0,
     dir: Direction = Direction.NoDirection
-  ) {
+  ): void {
     if (dir === Direction.AntiClockWise && this.prevAngle === 0) {
       this.prevAngle = 360;
     }
@@ -90,7 +90,7 @@ export default class Canvas extends EventEmitter {
     }
   }
 
-  animate(image: HTMLImageElement, sizes: Dimensions, dir: Direction) {
+  animate(image: HTMLImageElement, sizes: Dimensions, dir: Direction): void {
     drawImage(this.canvas, image, sizes, this.curAngle);
 
     if (this.shouldAnimate(dir)) {
@@ -102,7 +102,7 @@ export default class Canvas extends EventEmitter {
     }
   }
 
-  shouldAnimate(dir: Direction) {
+  shouldAnimate(dir: Direction): boolean {
     if (dir === Direction.ClockWise) {
       return this.curAngle < this.nextAngle;
     }
@@ -112,13 +112,13 @@ export default class Canvas extends EventEmitter {
     return false;
   }
 
-  getBoundaries({ width, height }: Dimensions, angle: number) {
+  getBoundaries({ width, height }: Dimensions, angle: number): Dimensions {
     return angle === 90 || angle === 270
       ? { width: height, height: width }
       : { width, height };
   }
 
-  getDataURL() {
+  getDataURL(): string {
     return this.canvas.toDataURL();
   }
 }

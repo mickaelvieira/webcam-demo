@@ -3,7 +3,7 @@ import { initEditor } from "./editor";
 import { initForm } from "./form";
 import { Tabs } from "./tabs";
 
-(function() {
+(function(): void {
   const _ = new Tabs();
   const editor = initEditor();
   const camera = initCamera();

@@ -6,21 +6,23 @@ interface Events {
 
 type Listener = (...args: any[]) => void;
 
+type Unsubscribe = () => void;
+
 export default class EventEmitter {
   events: Events = {};
 
-  on(event: string, listener: Listener) {
+  on(event: string, listener: Listener): Unsubscribe {
     if (!Array.isArray(this.events[event])) {
       this.events[event] = [];
     }
     this.events[event].push(listener);
 
-    return () => {
-      return this.off(event, listener);
+    return (): void => {
+      this.off(event, listener);
     };
   }
 
-  off(event: string, listener: Listener) {
+  off(event: string, listener: Listener): void {
     if (Array.isArray(this.events[event])) {
       const idx = this.events[event].indexOf(listener);
       if (idx >= 0) {
@@ -29,7 +31,7 @@ export default class EventEmitter {
     }
   }
 
-  emit(event: string, ...args: any[]) {
+  emit(event: string, ...args: any[]): void {
     if (Array.isArray(this.events[event])) {
       this.events[event].forEach(listener => {
         listener(...args);
@@ -37,7 +39,7 @@ export default class EventEmitter {
     }
   }
 
-  once(event: string, listener: Listener) {
+  once(event: string, listener: Listener): void {
     const callback: Listener = (...args) => {
       this.off(event, callback);
       listener(...args);

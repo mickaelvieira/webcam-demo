@@ -18,7 +18,6 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     "jsx-a11y/no-autofocus": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-unused-vars": ["error", {
       "varsIgnorePattern": "^_$"
     }]

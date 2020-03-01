@@ -8,7 +8,7 @@ export default class Download {
     this.button.download = this.filename;
   }
 
-  update(data: string) {
+  update(data: string): void {
     this.button.href = data;
   }
 }

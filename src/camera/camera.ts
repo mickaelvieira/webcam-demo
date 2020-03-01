@@ -53,7 +53,7 @@ export default class Camera extends EventEmitter {
     this.getDevices();
   }
 
-  start = async () => {
+  start = async (): Promise<void> => {
     this.log("Start video");
 
     try {
@@ -68,7 +68,7 @@ export default class Camera extends EventEmitter {
     }
   };
 
-  stop = () => {
+  stop = (): void => {
     this.log("Stop video");
     if (!this.isStreamActive()) {
       return;
@@ -79,7 +79,7 @@ export default class Camera extends EventEmitter {
     this.log("All tracks were stopped");
   };
 
-  snap = async () => {
+  snap = async (): Promise<void> => {
     this.log("Snap photo");
 
     try {
@@ -115,7 +115,7 @@ export default class Camera extends EventEmitter {
     }
   };
 
-  async getDevices() {
+  async getDevices(): Promise<void> {
     const devices = await navigator.mediaDevices.enumerateDevices();
     for (const device of devices) {
       this.log(`${device.deviceId} [${device.kind}]: ${device.label}`);
@@ -139,14 +139,14 @@ export default class Camera extends EventEmitter {
     audio: false
   });
 
-  log(message: string) {
+  log(message: string): void {
     if (this.logger) {
       this.logger.log(message);
     }
   }
 }
 
-export function initCamera() {
+export function initCamera(): Camera {
   const elements = getDOMElements<Elements>({
     start: ".btn-start-video",
     stop: ".btn-stop-video",

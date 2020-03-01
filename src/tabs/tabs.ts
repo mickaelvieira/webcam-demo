@@ -11,7 +11,7 @@ export default class Tabs {
     this.change(this.getFirstId());
   }
 
-  handleClick = (event: Event) => {
+  handleClick = (event: Event): void => {
     if (event.target) {
       const target = event.currentTarget as Element;
       if (target.id) {
@@ -20,7 +20,7 @@ export default class Tabs {
     }
   };
 
-  change(id: string) {
+  change(id: string): void {
     for (const tab of this.tabs) {
       if (tab.id === id) {
         tab.classList.add("active");

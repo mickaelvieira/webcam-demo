@@ -5,13 +5,13 @@ export default class Logger {
     this.element = element;
   }
 
-  clear() {
+  clear(): void {
     if (this.element) {
       this.element.innerHTML = "";
     }
   }
 
-  log(message: string) {
+  log(message: string): void {
     console.log(message);
     if (this.element) {
       const div = document.createElement("div");

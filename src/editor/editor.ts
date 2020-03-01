@@ -45,12 +45,12 @@ export default class Editor {
     });
   }
 
-  updateImage(image: HTMLImageElement) {
+  updateImage(image: HTMLImageElement): void {
     this.image = image;
     this.updateCanvas();
   }
 
-  updateCanvas(dir = Direction.NoDirection) {
+  updateCanvas(dir = Direction.NoDirection): void {
     if (!this.image) {
       return;
     }
@@ -61,7 +61,7 @@ export default class Editor {
     this.canvas.update(this.image, angle, dir);
   }
 
-  rotateRight = () => {
+  rotateRight = (): void => {
     this.angle = this.angle + 1;
     if (this.angle >= this.angles.length) {
       this.angle = 0;
@@ -69,7 +69,7 @@ export default class Editor {
     this.updateCanvas(Direction.ClockWise);
   };
 
-  rotateLeft = () => {
+  rotateLeft = (): void => {
     this.angle = this.angle - 1;
     if (this.angle < 0) {
       this.angle = this.angles.length - 1;
@@ -78,7 +78,7 @@ export default class Editor {
   };
 }
 
-export function initEditor() {
+export function initEditor(): Editor {
   const elements = getDOMElements<Elements>({
     left: ".btn-rotate-left",
     right: ".btn-rotate-right",

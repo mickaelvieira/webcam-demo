@@ -32,20 +32,20 @@ export default class DragAndDrop extends EventEmitter {
     this.dropArea.addEventListener("drop", this.onDrop, false);
   }
 
-  preventDefaults = (event: Event) => {
+  preventDefaults = (event: Event): void => {
     event.preventDefault();
     event.stopPropagation();
   };
 
-  highlight = () => {
+  highlight = (): void => {
     this.dropArea.classList.add("highlight");
   };
 
-  unhighlight = () => {
+  unhighlight = (): void => {
     this.dropArea.classList.remove("highlight");
   };
 
-  onDrop = async (event: DragEvent) => {
+  onDrop = async (event: DragEvent): void => {
     const file = this.getFileFromEvent(event);
 
     if (file) {

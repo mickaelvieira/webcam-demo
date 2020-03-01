@@ -4,11 +4,10 @@ export function readFileContent(file: File): Promise<string> {
   const reader = new FileReader();
   reader.readAsDataURL(file);
   return new Promise((resolve, reject) => {
-    reader.onload = event => {
-      const target = event.target as FileReader;
-      resolve(target.result as string);
+    reader.onload = (event): void => {
+      resolve((event.target as FileReader).result as string);
     };
-    reader.onerror = () => {
+    reader.onerror = (): void => {
       reject(new Error("Cannot read the file"));
     };
   });
@@ -18,10 +17,10 @@ export function loadImageData(source: string): Promise<HTMLImageElement> {
   const image = new Image();
   image.src = source;
   return new Promise((resolve, reject) => {
-    image.onload = event => {
+    image.onload = (event): void => {
       resolve(event.target as HTMLImageElement);
     };
-    image.onerror = () => {
+    image.onerror = (): void => {
       reject(new Error("Cannot read the image"));
     };
   });
@@ -46,7 +45,7 @@ export function drawImage(
   image: HTMLImageElement,
   shape: Dimensions,
   angle: number
-) {
+): void {
   const ctx = canvas.getContext("2d");
 
   if (!ctx) {

@@ -9,24 +9,24 @@ export default class Message {
     this.element = element;
   }
 
-  clear() {
+  clear(): void {
     this.element.classList.remove(...this.allCss);
     this.element.innerHTML = "";
   }
 
-  info(message: string) {
+  info(message: string): void {
     this.clear();
     this.element.classList.add(this.cssInfo);
     this.update(message);
   }
 
-  error(message: string) {
+  error(message: string): void {
     this.clear();
     this.element.classList.add(this.cssError);
     this.update(message);
   }
 
-  update(message: string) {
+  update(message: string): void {
     this.element.innerHTML = message;
   }
 }

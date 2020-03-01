@@ -34,15 +34,15 @@ export default class Form extends EventEmitter {
     open.addEventListener("click", this.handleClick);
   }
 
-  handleClick = () => {
+  handleClick = (): void => {
     this.form.image.click();
   };
 
-  handleSubmit = (event: Event) => {
+  handleSubmit = (event: Event): void => {
     event.preventDefault();
   };
 
-  handleChange = async (event: Event) => {
+  handleChange = async (event: Event): Promise<void> => {
     this.message.clear();
 
     const file = this.getFileFromEvent(event);
@@ -77,7 +77,7 @@ export default class Form extends EventEmitter {
   }
 }
 
-export function initForm() {
+export function initForm(): [Form, DragAndDrop] {
   const elements = getDOMElements<Elements>({
     msg: ".form-message",
     dropArea: ".drop-area",
