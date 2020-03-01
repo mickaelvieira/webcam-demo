@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <title>Camera & File Upload - Proof of concept!</title>
+    <link href="/styles.css" rel="stylesheet">
+    <script src="/app.js"  defer></script>
+  </head>
+<body>
+
+  <div class="svg">
+    <?xml version="1.0" encoding="UTF-8"?>
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="icon-upload" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+      </symbol>
+      <symbol id="icon-download" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+      </symbol>
+      <symbol id="icon-eye" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+      </symbol>
+
+      <symbol id="icon-snap" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+      </symbol>
+      <symbol id="icon-play" viewBox="0 0 512 512">
+        <path d="M448,256c0-106-86-192-192-192S64,150,64,256s86,192,192,192S448,362,448,256Z" style="fill:none;stroke:currentColor;stroke-miterlimit:10;stroke-width:32px"/>
+        <path d="M216.32,334.44,330.77,265.3a10.89,10.89,0,0,0,0-18.6L216.32,177.56A10.78,10.78,0,0,0,200,186.87V325.13A10.78,10.78,0,0,0,216.32,334.44Z"/>
+      </symbol>
+      <symbol id="icon-stop" viewBox="0 0 512 512">
+        <path d="M448,256c0-106-86-192-192-192S64,150,64,256s86,192,192,192S448,362,448,256Z" style="fill:none;stroke:currentColor;stroke-miterlimit:10;stroke-width:32px"/>
+        <path d="M310.4,336H201.6A25.62,25.62,0,0,1,176,310.4V201.6A25.62,25.62,0,0,1,201.6,176H310.4A25.62,25.62,0,0,1,336,201.6V310.4A25.62,25.62,0,0,1,310.4,336Z"/>
+      </symbol>
+
+      <symbol id="icon-rotate-right" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"/>
+      </symbol>
+      <symbol id="icon-rotate-left" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0z" fill="none"/>
+        <path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/>
+      </symbol>
+
+    </svg>
+  </div>
+
+  <main class="main">
+    <article class="container">
+
+      <div class="tabs">
+
+        <div role="tablist" class="tablist" aria-label="">
+          <button class="tabbutton" role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1" tabindex="0">
+            <span class="icon-wrapper">
+              <svg class="icon icon-snap" width="24px" height="24px" >
+                <use href="#icon-upload"></use>
+              </svg>
+            </span>
+            <span class="text-wrapper">
+              From your computer
+            </span>
+          </button>
+          <button class="tabbutton" role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2" tabindex="-1">
+            <span class="icon-wrapper">
+              <svg class="icon icon-snap" width="24px" height="24px" >
+                <use href="#icon-snap"></use>
+              </svg>
+            </span>
+            <span class="text-wrapper">
+              From your camera
+            </span>
+          </button>
+          <button class="tabbutton" role="tab" aria-selected="false" aria-controls="panel-3" id="tab-3" tabindex="-1">
+            <span class="icon-wrapper">
+              <svg class="icon icon-eye" width="24px" height="24px" >
+                <use href="#icon-eye"></use>
+              </svg>
+            </span>
+            <span class="text-wrapper">
+              Preview
+            </span>
+          </button>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
+          <div class="form-message message"></div>
+          <div class="drop-area">
+            <form class="form-image" >
+              <label for="upload-field" class="cursor-pointer"></label>
+              <input type="file" name="image" id="upload-field" accept="image/*,capture=camera" >
+              <button type="button" class="btn btn-open-files">
+                <span class="icon-wrapper">
+                  <svg class="icon icon-snap" width="22px" height="22px" >
+                    <use href="#icon-upload"></use>
+                  </svg>
+                </span>
+                <span class="text-wrapper">Choose a file</span>
+              </button> or drop it.
+            </form>
+          </div>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" tabindex="0" aria-labelledby="tab-2" hidden>
+          <div class="video-message message"></div>
+          <video class="video"></video>
+          <canvas class="capture"></canvas>
+          <div class="buttons">
+            <button type="button" class="btn btn-capture-photo ">
+              <span class="icon-wrapper">
+                <svg class="icon icon-snap" width="22px" height="22px" >
+                  <use href="#icon-snap"></use>
+                </svg>
+              </span>
+              <span class="text-wrapper">Take a photo</span>
+            </button>
+            <button type="button" class="btn btn-start-video ">
+              <span class="icon-wrapper">
+                <svg class="icon" width="22px" height="22px">
+                  <use href="#icon-play"></use>
+                </svg>
+              </span>
+              <span class="text-wrapper">Start</span>
+            </button>
+            <button type="button" class="btn btn-stop-video ">
+              <span class="icon-wrapper">
+                <svg class="icon" width="22px" height="22px">
+                  <use href="#icon-stop"></use>
+                </svg>
+              </span>
+              <span class="text-wrapper">Stop</span>
+            </button>
+          </div>
+          <div class="camera-logs"></div>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" tabindex="0" aria-labelledby="tab-3" hidden>
+          <div class="editor">
+            <canvas class="preview" width="300px" height="150px"></canvas>
+            <canvas class="canvas" width="800px" height="1000px"></canvas>
+            <div class="buttons">
+              <button type="button" class="btn btn-rotate btn-rotate-left">
+                <span class="icon-wrapper">
+                  <svg class="icon" width="22px" height="22px">
+                    <use href="#icon-rotate-left"></use>
+                  </svg>
+                </span>
+              </button>
+              <button type="button" class="btn btn-rotate btn-rotate-right">
+                <span class="icon-wrapper">
+                  <svg class="icon" width="22px" height="22px">
+                    <use href="#icon-rotate-right"></use>
+                  </svg>
+                </span>
+              </button>
+              <a href="#" class="btn btn-download">
+                <span class="icon-wrapper">
+                  <svg class="icon icon-download" width="22px" height="22px">
+                    <use href="#icon-download"></use>
+                  </svg>
+                </span>
+                <span class="text-wrapper">
+                  Download
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </article>
+  </main>
+</body>
+</html>

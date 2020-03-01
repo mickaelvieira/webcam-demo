@@ -1,0 +1,943 @@
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+ html {
+  line-height: 1.15;
+
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+
+  /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+/* body {
+  margin: 0;
+} */
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box;
+
+  /* 1 */
+  height: 0;
+
+  /* 1 */
+  overflow: visible;
+
+  /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace;
+
+  /* 1 */
+  font-size: 1em;
+
+  /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none;
+
+  /* 1 */
+  text-decoration: underline;
+
+  /* 2 */
+  text-decoration: underline dotted;
+
+  /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+
+  /* 1 */
+  font-size: 1em;
+
+  /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+
+  /* 1 */
+  font-size: 100%;
+
+  /* 1 */
+  line-height: 1.15;
+
+  /* 1 */
+  margin: 0;
+
+  /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box;
+
+  /* 1 */
+  color: inherit;
+
+  /* 2 */
+  display: table;
+
+  /* 1 */
+  max-width: 100%;
+
+  /* 1 */
+  padding: 0;
+
+  /* 3 */
+  white-space: normal;
+
+  /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+
+  /* 1 */
+  padding: 0;
+
+  /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield;
+
+  /* 1 */
+  outline-offset: -2px;
+
+  /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+
+  /* 1 */
+  font: inherit;
+
+  /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-Thin.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-Thin.woff?v=3.12") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  italic;
+  font-weight: 100;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-ThinItalic.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-ThinItalic.woff?v=3.12") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-ExtraLight.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-ExtraLight.woff?v=3.12") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  italic;
+  font-weight: 200;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-ExtraLightItalic.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-ExtraLightItalic.woff?v=3.12") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-Light.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-Light.woff?v=3.12") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-LightItalic.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-LightItalic.woff?v=3.12") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-Regular.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-Regular.woff?v=3.12") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-Italic.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-Italic.woff?v=3.12") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-Medium.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-Medium.woff?v=3.12") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-MediumItalic.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-MediumItalic.woff?v=3.12") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-SemiBold.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-SemiBold.woff?v=3.12") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-SemiBoldItalic.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-SemiBoldItalic.woff?v=3.12") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-Bold.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-Bold.woff?v=3.12") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-BoldItalic.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-BoldItalic.woff?v=3.12") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-ExtraBold.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-ExtraBold.woff?v=3.12") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-ExtraBoldItalic.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-ExtraBoldItalic.woff?v=3.12") format("woff");
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-Black.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-Black.woff?v=3.12") format("woff");
+}
+@font-face {
+  font-family: 'Inter';
+  font-style:  italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-BlackItalic.woff2?v=3.12") format("woff2"),
+       url("/fonts/inter/Inter-BlackItalic.woff?v=3.12") format("woff");
+}
+
+/* -------------------------------------------------------
+Variable font.
+Usage:
+
+  html { font-family: 'Inter', sans-serif; }
+  @supports (font-variation-settings: normal) {
+    html { font-family: 'Inter var', sans-serif; }
+  }
+*/
+@font-face {
+  font-family: 'Inter var';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  font-named-instance: 'Regular';
+  src: url("/fonts/inter/Inter-roman.var.woff2?v=3.12") format("woff2");
+}
+@font-face {
+  font-family: 'Inter var';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+  font-named-instance: 'Italic';
+  src: url("/fonts/inter/Inter-italic.var.woff2?v=3.12") format("woff2");
+}
+
+
+/* --------------------------------------------------------------------------
+[EXPERIMENTAL] Multi-axis, single variable font.
+
+Slant axis is not yet widely supported (as of February 2019) and thus this
+multi-axis single variable font is opt-in rather than the default.
+
+When using this, you will probably need to set font-variation-settings
+explicitly, e.g.
+
+  * { font-variation-settings: "slnt" 0deg }
+  .italic { font-variation-settings: "slnt" 10deg }
+
+*/
+@font-face {
+  font-family: 'Inter var experimental';
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: oblique 0deg 10deg;
+  src: url("Inter.var.woff2?v=3.12") format("woff2");
+}
+
+
+:root {
+  --white: #fff;
+  --black: #000;
+  --grey-50: #fafafa;
+  --grey-100: #f5f5f5;
+  --grey-200: #eee;
+  --grey-300: #e0e0e0;
+  --grey-400: #bdbdbd;
+  --grey-500: #9e9e9e;
+  --grey-600: #757575;
+  --grey-700: #616161;
+  --grey-800: #424242;
+  --grey-900: #212121;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 16px;
+  --spacing-4: 24px;
+  --spacing-5: 32px;
+  --spacing-6: 64px;
+  --spacing-7: 128px;
+  --line-height-body: 1.5;
+  --line-height-heading: 1.25;
+  --primary-font: Inter, sans-serif;
+  --secondary-font: Inter, sans-serif;
+  --font-size-0: 0.88rem;  /* 14px */
+  --font-size-1: 1rem;     /* 16px */
+  --font-size-2: 1.125rem; /* 18px */
+  --font-size-3: 1.5rem;   /* 24px */
+  --font-size-4: 1.875rem; /* 30px */
+  --font-size-5: 2.25rem;  /* 36px */
+  --font-size-6: 2.5rem;   /* 40px */
+  --font-size-7: 3rem;     /* 48px */
+  --font-size-8: 4rem;     /* 64px */
+  --font-size-9: 4.5rem;   /* 72px */
+  --font-size-10: 6rem;    /* 96px */
+  --shadow-card: 0 0 4px rgba(0, 0, 0, 0.125);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-outline: 0 0 0 3px rgba(66, 153, 225, 0.6);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --native-font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --base-font-size-large-screen: 100%;
+  --base-font-size-medium-screen: 100%;
+  --base-font-size-small-screen: 90%;
+  --sidebar-width: 300px;
+  --menu-text-color: var(--grey-50);
+  --menu-font-weight: 300;
+  --button-font-weight: 400;
+  --heading-font-weight: 300;
+  --primary-main: #212121;
+  --secondary-main: #2368a2;
+}
+
+html {
+  font-size: var(--base-font-size-small-screen);
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  line-height: var(--line-height-body);
+  font-family: var(--primary-font);
+  color: var(--primary-main);
+  background-color: var(--grey-50);
+}
+
+a,
+a:hover,
+a:active,
+a:visited {
+  color: var(--primary-main);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  max-width: 1024px;
+  margin: 0 auto;
+  background-color: white;
+  margin-top: var(--spacing-2);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  background-color: var(--secondary-main);
+  border-radius: 3px;
+  padding: 0 var(--spacing-2);
+  color: var(--grey-50);
+  text-decoration: none;
+  height: 32px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+}
+
+.svg {
+  display: none;
+}
+
+.text-wrapper {
+  margin-left: var(--spacing-1);
+  display: none;
+}
+
+.icon-wrapper {
+  line-height: 0;
+}
+
+.btn .icon {
+  fill: var(--grey-50);
+}
+
+.btn .text-wrapper {
+  color: var(--grey-50);
+}
+
+.btn .icon-snap {
+  fill: none;
+}
+
+.btn:hover .icon-download {
+  stroke: var(--grey-50);
+  color: var(--grey-50);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  display: none;
+  border: 1px solid var(--grey-400);
+  padding: var(--spacing-2);
+  margin: 0 0 var(--spacing-2);
+}
+
+.error, .info {
+  display: block;
+}
+
+.error {
+  color: red;
+}
+
+.info {
+  color: green;
+}
+
+/* Tabs
+   ================================================================================= */
+
+.tabs {}
+
+.tablist {
+  display: flex;
+  justify-content: stretch;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+}
+
+.tabbutton {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-3);
+  border: 0;
+  border-top: 1px solid var(--grey-400);
+  border-right: 1px solid var(--grey-400);
+  text-align: center;
+  background: none;
+  cursor: pointer;
+}
+
+.tabbutton .text-wrapper {
+  font-weight: inherit;
+  margin-left: var(--spacing-2);
+}
+
+@media (min-width: 600px) {
+  .tabbutton .text-wrapper {
+    display: inline-block;
+  }
+}
+
+.tabbutton:-moz-focusring {
+  outline: 0;
+}
+
+.tabbutton.active {
+  font-weight: 600;
+}
+
+.tablist .tabbutton:first-child {
+  border-top-left-radius: 3px;
+  border-left: 1px solid var(--grey-400);
+}
+
+.tablist .tabbutton:last-child {
+  border-top-right-radius: 3px;
+}
+
+.tabpanel {
+  display: none;
+  flex-direction: column;
+  padding: var(--spacing-2);
+  border: 1px solid var(--grey-400);
+  border-radius: 3px;
+  border-top-left-radius: 0;
+}
+
+.tabpanel.active {
+  display: flex;
+}
+
+/* Form upload
+   ================================================================================= */
+.drop-area {
+  background-color: #fafafa;
+  border: 1px dashed #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.drop-area.highlight {
+  background-color: var(--grey-400);
+}
+
+.form-image {
+  display: flex;
+  align-items: center;
+}
+
+.btn-open-files {
+  margin-right: var(--spacing-2);
+  padding-left: var(--spacing-3);
+  padding-right: var(--spacing-3);
+}
+
+.btn-open-files .text-wrapper {
+  display: inline-block;
+  margin-left: var(--spacing-2);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--grey-400);
+  padding: var(--spacing-2);
+  margin: var(--spacing-2) 0;
+}
+
+.buttons .btn {
+  margin: 0 var(--spacing-1);
+}
+
+.buttons .btn:first-child {
+  margin-left: 0;
+}
+
+#upload-field {
+  display: none;
+}
+
+/* Editor
+   ================================================================================= */
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btn-rotate svg {
+  fill: var(--grey-50);
+}
+
+.btn-download:hover .icon {
+  stroke: var(--grey-50);
+}
+
+.preview {
+  margin: 0 auto;
+  border: 1px solid var(--grey-400);
+}
+
+.canvas {
+  display: none;
+}
+
+/* Video
+   ================================================================================= */
+
+.capture {
+  display: none;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid var(--grey-400);
+}
+
+.video-wrapper {
+  width: 300px;
+  height: 200px;
+  position: relative;
+}
+
+.camera-logs {
+  font-family: monospace;
+  padding: var(--spacing-2);
+  border: 1px solid var(--grey-400);
+  word-break: break-word;
+}
