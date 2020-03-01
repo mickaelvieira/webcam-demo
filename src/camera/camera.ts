@@ -1,19 +1,28 @@
 import EventEmitter from "../events";
 import { Format } from "../types";
-import { loadImageData, calculateRatio } from "../helpers";
+import { loadImageData, calculateRatio, getDOMElements } from "../helpers";
 import Logger from "../logger";
 import { Message } from "../form";
+
+interface Buttons {
+  snap: HTMLButtonElement;
+  start: HTMLButtonElement;
+  stop: HTMLButtonElement;
+}
 
 interface Props {
   video: HTMLVideoElement;
   snapshot: HTMLCanvasElement;
   message: Message;
   logger?: Logger;
-  buttons: {
-    snap: HTMLButtonElement;
-    start: HTMLButtonElement;
-    stop: HTMLButtonElement;
-  };
+  buttons: Buttons;
+}
+
+interface Elements extends Buttons {
+  video: HTMLVideoElement;
+  snapshot: HTMLCanvasElement;
+  msg: HTMLDivElement;
+  logs: HTMLDivElement;
 }
 
 export default class Camera extends EventEmitter {
@@ -48,18 +57,8 @@ export default class Camera extends EventEmitter {
     this.log("Start video");
 
     try {
-      this.stream = await navigator.mediaDevices.getUserMedia({
-        video: {
-          facingMode: { ideal: "environment" },
-          width: {
-            ideal: this.video.clientWidth
-          },
-          aspectRatio: {
-            ideal: calculateRatio(Format.Standard)
-          }
-        },
-        audio: false
-      });
+      const constraints = this.getStreamConstraints();
+      this.stream = await navigator.mediaDevices.getUserMedia(constraints);
       this.log("Stream was created");
       this.video.srcObject = this.stream;
       this.video.play();
@@ -112,7 +111,7 @@ export default class Camera extends EventEmitter {
       this.message.info("Preview updated!");
       this.stop();
     } catch (err) {
-      this.log("An error occurred: " + err);
+      this.log(err);
     }
   };
 
@@ -127,6 +126,19 @@ export default class Camera extends EventEmitter {
     return typeof this.stream !== "undefined" && this.stream.active;
   }
 
+  getStreamConstraints = (): MediaStreamConstraints => ({
+    video: {
+      facingMode: { ideal: "environment" },
+      width: {
+        ideal: this.video.clientWidth
+      },
+      aspectRatio: {
+        ideal: calculateRatio(Format.Standard)
+      }
+    },
+    audio: false
+  });
+
   log(message: string) {
     if (this.logger) {
       this.logger.log(message);
@@ -135,20 +147,21 @@ export default class Camera extends EventEmitter {
 }
 
 export function initCamera() {
-  const snap = document.querySelector(
-    ".btn-capture-photo"
-  ) as HTMLButtonElement;
-  const msg = document.querySelector(".video-message") as HTMLDivElement;
-  const start = document.querySelector(".btn-start-video") as HTMLButtonElement;
-  const stop = document.querySelector(".btn-stop-video") as HTMLButtonElement;
-  const video = document.querySelector(".video") as HTMLVideoElement;
-  const snapshot = document.querySelector(".capture") as HTMLCanvasElement;
-  const logger = new Logger(document.querySelector(".camera-logs"));
+  const elements = getDOMElements<Elements>({
+    start: ".btn-start-video",
+    stop: ".btn-stop-video",
+    snap: ".btn-capture-photo",
+    msg: ".video-message",
+    video: ".video",
+    snapshot: ".capture",
+    logs: ".camera-logs"
+  });
 
-  if (!msg || !snap || !start || !stop || !video || !snapshot) {
-    throw new Error("Some DOM elements are missing");
-  }
+  console.log(elements);
 
+  const { start, stop, snap, msg, video, snapshot, logs } = elements;
+
+  const logger = new Logger(logs);
   const message = new Message(msg);
 
   return new Camera({

@@ -1,14 +1,22 @@
 import Message from "./message";
-import { loadImageData, readFileContent } from "../helpers";
+import { loadImageData, readFileContent, getDOMElements } from "../helpers";
 import EventEmitter from "../events";
-import DrapAndDrop from "./drop";
+import DragAndDrop from "./drop";
+
+interface Buttons {
+  open: HTMLButtonElement;
+}
+
+interface Elements extends Buttons {
+  form: HTMLFormElement;
+  msg: HTMLDivElement;
+  dropArea: HTMLDivElement;
+}
 
 interface Props {
   form: HTMLFormElement;
   message: Message;
-  buttons: {
-    open: HTMLButtonElement;
-  };
+  buttons: Buttons;
 }
 
 export default class Form extends EventEmitter {
@@ -70,18 +78,18 @@ export default class Form extends EventEmitter {
 }
 
 export function initForm() {
-  const msg = document.querySelector(".form-message") as HTMLDivElement;
-  const dropArea = document.querySelector(".drop-area") as HTMLDivElement;
-  const form = document.querySelector(".form-image") as HTMLFormElement;
-  const open = document.querySelector(".btn-open-files") as HTMLButtonElement;
+  const elements = getDOMElements<Elements>({
+    msg: ".form-message",
+    dropArea: ".drop-area",
+    form: ".form-image",
+    open: ".btn-open-files"
+  });
 
-  if (!msg || !dropArea || !form) {
-    throw new Error("Some DOM elements are missing");
-  }
+  const { msg, dropArea, form, open } = elements;
 
   const message = new Message(msg);
   const formUpload = new Form({ form, message, buttons: { open } });
-  const dropZone = new DrapAndDrop({ message, dropArea });
+  const dropZone = new DragAndDrop({ message, dropArea });
 
   return [formUpload, dropZone];
 }

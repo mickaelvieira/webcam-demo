@@ -1,15 +1,24 @@
 import Download from "./download";
 import Canvas from "./canvas";
 import { Direction } from "./canvas";
+import { getDOMElements } from "../helpers";
+
+interface Buttons {
+  left: HTMLButtonElement;
+  right: HTMLButtonElement;
+}
+
+interface Elements extends Buttons {
+  canvas1: HTMLCanvasElement;
+  canvas2: HTMLCanvasElement;
+  dl: HTMLAnchorElement;
+}
 
 interface Props {
   preview: Canvas;
   canvas: Canvas;
   download: Download;
-  buttons: {
-    left: HTMLButtonElement;
-    right: HTMLButtonElement;
-  };
+  buttons: Buttons;
 }
 
 export default class Editor {
@@ -70,17 +79,15 @@ export default class Editor {
 }
 
 export function initEditor() {
-  const left = document.querySelector(".btn-rotate-left") as HTMLButtonElement;
-  const right = document.querySelector(
-    ".btn-rotate-right"
-  ) as HTMLButtonElement;
-  const canvas1 = document.querySelector(".preview") as HTMLCanvasElement;
-  const canvas2 = document.querySelector(".canvas") as HTMLCanvasElement;
-  const dl = document.querySelector(".btn-download") as HTMLAnchorElement;
+  const elements = getDOMElements<Elements>({
+    left: ".btn-rotate-left",
+    right: ".btn-rotate-right",
+    canvas1: ".preview",
+    canvas2: ".canvas",
+    dl: ".btn-download"
+  });
 
-  if (!left || !right || !canvas1 || !canvas2 || !dl) {
-    throw new Error("Some DOM elements are missing");
-  }
+  const { left, right, dl, canvas1, canvas2 } = elements;
 
   const preview = new Canvas(canvas1, true);
   const canvas = new Canvas(canvas2);

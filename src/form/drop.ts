@@ -7,7 +7,7 @@ interface Props {
   message: Message;
 }
 
-export default class DrapAndDrop extends EventEmitter {
+export default class DragAndDrop extends EventEmitter {
   dropArea: HTMLDivElement;
   message: Message;
 

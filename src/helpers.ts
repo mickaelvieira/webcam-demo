@@ -126,3 +126,19 @@ export function calculateFitSize(
   }
   throw new Error("Unsupported format");
 }
+
+interface Input {
+  [name: string]: string;
+}
+
+export function getDOMElements<T>(selectors: Input): T {
+  const elements = Object.create(null);
+  for (const [name, selector] of Object.entries(selectors)) {
+    const element = document.querySelector(selector);
+    if (!element) {
+      throw new Error(`Cannot find DOM element with selector ${selector}`);
+    }
+    elements[name] = element;
+  }
+  return elements;
+}
