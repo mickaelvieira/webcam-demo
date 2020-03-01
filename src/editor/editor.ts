@@ -38,7 +38,7 @@ export default class Editor {
     this.download = download;
 
     left.addEventListener("click", this.rotateLeft);
-    right.addEventListener("click", this.counterRight);
+    right.addEventListener("click", this.rotateRight);
 
     this.canvas.on("update", () => {
       this.download.update(this.canvas.getDataURL());
@@ -61,7 +61,7 @@ export default class Editor {
     this.canvas.update(this.image, angle, dir);
   }
 
-  rotateLeft = () => {
+  rotateRight = () => {
     this.angle = this.angle + 1;
     if (this.angle >= this.angles.length) {
       this.angle = 0;
@@ -69,7 +69,7 @@ export default class Editor {
     this.updateCanvas(Direction.ClockWise);
   };
 
-  counterRight = () => {
+  rotateLeft = () => {
     this.angle = this.angle - 1;
     if (this.angle < 0) {
       this.angle = this.angles.length - 1;

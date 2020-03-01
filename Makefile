@@ -20,7 +20,7 @@ deploy-prod:
 	gcloud run deploy $(GCP_SERVICE_NAME) --platform managed --allow-unauthenticated --region europe-west1 --image $(GCP_IMAGE)
 
 watch:
-	./scripts/watch
+	yarn watch:js
 
 lint:
 	yarn lint:js

@@ -157,8 +157,6 @@ export function initCamera() {
     logs: ".camera-logs"
   });
 
-  console.log(elements);
-
   const { start, stop, snap, msg, video, snapshot, logs } = elements;
 
   const logger = new Logger(logs);
