@@ -13,6 +13,8 @@ COPY rollup.config.js rollup.config.js
 COPY public public
 COPY src src
 
+ENV NODE_ENV=production
+
 RUN yarn build:js
 
 # runtime
