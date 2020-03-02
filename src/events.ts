@@ -8,7 +8,7 @@ type Listener = (...args: any[]) => void;
 
 type Unsubscribe = () => void;
 
-export default class EventEmitter {
+export class EventEmitter {
   events: Events = {};
 
   on(event: string, listener: Listener): Unsubscribe {
@@ -45,5 +45,43 @@ export default class EventEmitter {
       listener(...args);
     };
     this.on(event, callback);
+  }
+}
+
+/* eslint @typescript-eslint/no-empty-interface: off */
+
+interface Message {}
+
+type Subscriber = (message: any) => void;
+
+interface Subscribers {
+  [name: string]: Subscriber[];
+}
+
+export class PubSub {
+  subscribers: Subscribers = {};
+
+  subscribe(topic: string, handler: Subscriber): void {
+    if (!Array.isArray(this.subscribers[topic])) {
+      this.subscribers[topic] = [];
+    }
+    this.subscribers[topic].push(handler);
+  }
+
+  unsubscribe(handler: Subscriber): void {
+    for (const subscribers of Object.values(this.subscribers)) {
+      const idx = subscribers.indexOf(handler);
+      if (idx >= 0) {
+        subscribers.splice(idx, 1);
+      }
+    }
+  }
+
+  dispatch(topic: string, message: any): void {
+    if (Array.isArray(this.subscribers[topic])) {
+      this.subscribers[topic].forEach(handler => {
+        handler(message);
+      });
+    }
   }
 }

@@ -1,3 +1,3 @@
-import Tabs from "./tabs";
+import Tabs, { makeTabs } from "./tabs";
 
-export { Tabs };
+export { Tabs, makeTabs };

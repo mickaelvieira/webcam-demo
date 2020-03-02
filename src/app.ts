@@ -1,23 +1,16 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import { initCamera } from "./camera";
-import { initEditor } from "./editor";
-import { initUploadArea } from "./form";
-import { Tabs } from "./tabs";
+import { makeCamera } from "./camera";
+import { makeEditor } from "./editor";
+import { makeUploadArea } from "./form";
+import { makeTabs } from "./tabs";
+import { PubSub } from "./events";
 
 (function(): void {
-  const _ = new Tabs();
-  const editor = initEditor();
-  const camera = initCamera();
-  const [form, drop] = initUploadArea();
+  const channel = new PubSub();
 
-  camera.on("change", image => {
-    editor.updateImage(image);
-  });
-  form.on("change", image => {
-    editor.updateImage(image);
-  });
-  drop.on("change", image => {
-    editor.updateImage(image);
-  });
+  makeTabs();
+  makeCamera(channel);
+  makeUploadArea(channel);
+  makeEditor(channel);
 })();

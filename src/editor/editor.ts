@@ -1,29 +1,23 @@
 import Download from "./download";
-import Canvas from "./canvas";
-import { Direction } from "./canvas";
-import { getDOMElements } from "../helpers";
+import Preview from "./preview";
+import Document from "./document";
+import { Direction } from "./preview";
 
-interface Buttons {
+export interface EditorButtons {
   left: HTMLButtonElement;
   right: HTMLButtonElement;
 }
 
-interface Elements extends Buttons {
-  canvas1: HTMLCanvasElement;
-  canvas2: HTMLCanvasElement;
-  dl: HTMLAnchorElement;
-}
-
 interface Props {
-  preview: Canvas;
-  canvas: Canvas;
+  preview: Preview;
+  document: Document;
   download: Download;
-  buttons: Buttons;
+  buttons: EditorButtons;
 }
 
 export default class Editor {
-  preview: Canvas;
-  canvas: Canvas;
+  preview: Preview;
+  document: Document;
   download: Download;
 
   image: HTMLImageElement | null = null;
@@ -32,17 +26,22 @@ export default class Editor {
 
   angles = [0, 90, 180, 270];
 
-  constructor({ preview, canvas, download, buttons: { left, right } }: Props) {
-    this.canvas = canvas;
+  constructor({
+    preview,
+    document,
+    download,
+    buttons: { left, right }
+  }: Props) {
+    this.document = document;
     this.preview = preview;
     this.download = download;
 
     left.addEventListener("click", this.rotateLeft);
     right.addEventListener("click", this.rotateRight);
+  }
 
-    this.canvas.on("update", () => {
-      this.download.update(this.canvas.getDataURL());
-    });
+  updateDownloadLink(canvas: HTMLCanvasElement): void {
+    this.download.update(canvas.toDataURL());
   }
 
   updateImage(image: HTMLImageElement): void {
@@ -58,7 +57,7 @@ export default class Editor {
     const angle = this.angles[this.angle];
 
     this.preview.update(this.image, angle, dir);
-    this.canvas.update(this.image, angle, dir);
+    this.document.update(this.image, angle);
   }
 
   rotateRight = (): void => {
@@ -76,30 +75,4 @@ export default class Editor {
     }
     this.updateCanvas(Direction.AntiClockWise);
   };
-}
-
-export function initEditor(): Editor {
-  const elements = getDOMElements<Elements>({
-    left: ".btn-rotate-left",
-    right: ".btn-rotate-right",
-    canvas1: ".preview",
-    canvas2: ".canvas",
-    dl: ".btn-download"
-  });
-
-  const { left, right, dl, canvas1, canvas2 } = elements;
-
-  const preview = new Canvas(canvas1, true);
-  const canvas = new Canvas(canvas2);
-  const download = new Download(dl);
-
-  return new Editor({
-    canvas,
-    preview,
-    download,
-    buttons: {
-      left,
-      right
-    }
-  });
 }

@@ -42,3 +42,7 @@ export default class Tabs {
     return this.tabs.length > 0 ? this.tabs[0].id : "";
   }
 }
+
+export function makeTabs(): Tabs {
+  return new Tabs();
+}

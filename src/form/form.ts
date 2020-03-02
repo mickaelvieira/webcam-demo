@@ -1,36 +1,31 @@
-import Message from "./message";
-import { loadImageData, readFileContent, getDOMElements } from "../helpers";
-import EventEmitter from "../events";
-import DragAndDrop from "./drop";
+import Message from "../message/message";
+import { loadImageData, readFileContent } from "../helpers";
+import { PubSub } from "../events";
 
-interface Buttons {
+export interface FormButtons {
   open: HTMLButtonElement;
-}
-
-interface Elements extends Buttons {
-  form: HTMLFormElement;
-  msg: HTMLDivElement;
-  dropArea: HTMLDivElement;
 }
 
 interface Props {
   form: HTMLFormElement;
   message: Message;
-  buttons: Buttons;
+  channel: PubSub;
+  buttons: FormButtons;
 }
 
-export default class Form extends EventEmitter {
+export default class Form {
   form: HTMLFormElement;
   message: Message;
+  channel: PubSub;
 
-  constructor({ form, message, buttons: { open } }: Props) {
-    super();
-
+  constructor({ form, message, channel, buttons: { open } }: Props) {
     this.form = form;
     this.message = message;
+    this.channel = channel;
 
     this.form.addEventListener("submit", this.handleSubmit);
     this.form.image.addEventListener("change", this.handleChange);
+
     open.addEventListener("click", this.handleClick);
   }
 
@@ -51,7 +46,7 @@ export default class Form extends EventEmitter {
       try {
         const data = await readFileContent(file);
         const image = await loadImageData(data);
-        this.emit("change", image);
+        this.channel.dispatch("change", image);
         this.message.info("Preview updated!");
       } catch (err) {
         this.message.error(err.message);
@@ -75,21 +70,4 @@ export default class Form extends EventEmitter {
     }
     return files[0];
   }
-}
-
-export function initUploadArea(): [Form, DragAndDrop] {
-  const elements = getDOMElements<Elements>({
-    msg: ".form-message",
-    dropArea: ".drop-area",
-    form: ".form-image",
-    open: ".btn-open-files"
-  });
-
-  const { msg, dropArea, form, open } = elements;
-
-  const message = new Message(msg);
-  const formUpload = new Form({ form, message, buttons: { open } });
-  const dropZone = new DragAndDrop({ message, dropArea });
-
-  return [formUpload, dropZone];
 }

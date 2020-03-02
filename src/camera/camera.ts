@@ -1,10 +1,10 @@
-import EventEmitter from "../events";
+import { PubSub } from "../events";
 import { Format } from "../types";
-import { loadImageData, calculateRatio, getDOMElements } from "../helpers";
+import { loadImageData, calculateRatio } from "../helpers";
 import Logger from "../logger";
-import { Message } from "../form";
+import Message from "../message/message";
 
-interface Buttons {
+export interface CameraButtons {
   snap: HTMLButtonElement;
   start: HTMLButtonElement;
   stop: HTMLButtonElement;
@@ -14,21 +14,16 @@ interface Props {
   video: HTMLVideoElement;
   snapshot: HTMLCanvasElement;
   message: Message;
+  channel: PubSub;
   logger?: Logger;
-  buttons: Buttons;
+  buttons: CameraButtons;
 }
 
-interface Elements extends Buttons {
-  video: HTMLVideoElement;
-  snapshot: HTMLCanvasElement;
-  msg: HTMLDivElement;
-  logs: HTMLDivElement;
-}
-
-export default class Camera extends EventEmitter {
+export default class Camera {
   stream?: MediaStream;
   video: HTMLVideoElement;
   message: Message;
+  channel: PubSub;
   snapshot: HTMLCanvasElement;
   logger?: Logger;
 
@@ -36,14 +31,14 @@ export default class Camera extends EventEmitter {
     video,
     snapshot,
     message,
+    channel,
     logger,
     buttons: { snap, start, stop }
   }: Props) {
-    super();
-
     this.video = video;
     this.snapshot = snapshot;
     this.message = message;
+    this.channel = channel;
     this.logger = logger;
 
     snap.addEventListener("click", this.snap);
@@ -106,7 +101,7 @@ export default class Camera extends EventEmitter {
       const data = this.snapshot.toDataURL("image/png");
       const image = await loadImageData(data);
 
-      this.emit("change", image);
+      this.channel.dispatch("change", image);
       this.log("Photo was created");
       this.message.info("Preview updated!");
       this.stop();
@@ -144,33 +139,4 @@ export default class Camera extends EventEmitter {
       this.logger.log(message);
     }
   }
-}
-
-export function initCamera(): Camera {
-  const elements = getDOMElements<Elements>({
-    start: ".btn-start-video",
-    stop: ".btn-stop-video",
-    snap: ".btn-capture-photo",
-    msg: ".video-message",
-    video: ".video",
-    snapshot: ".capture",
-    logs: ".camera-logs"
-  });
-
-  const { start, stop, snap, msg, video, snapshot, logs } = elements;
-
-  const logger = new Logger(logs);
-  const message = new Message(msg);
-
-  return new Camera({
-    video,
-    snapshot,
-    message,
-    logger,
-    buttons: {
-      snap,
-      start,
-      stop
-    }
-  });
 }

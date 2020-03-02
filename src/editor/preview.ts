@@ -1,4 +1,3 @@
-import EventEmitter from "../events";
 import { Dimensions } from "../types";
 import {
   drawImage,
@@ -13,7 +12,11 @@ export enum Direction {
   AntiClockWise = -1
 }
 
-export default class Canvas extends EventEmitter {
+interface Props {
+  canvas: HTMLCanvasElement;
+}
+
+export default class Preview {
   canvas: HTMLCanvasElement;
 
   rate = 15;
@@ -24,15 +27,12 @@ export default class Canvas extends EventEmitter {
 
   nextAngle = 0;
 
-  constructor(canvas: HTMLCanvasElement, adjust = false) {
-    super();
+  constructor({ canvas }: Props) {
     this.canvas = canvas;
 
-    if (adjust) {
-      const mq = window.matchMedia("(min-width: 600px)");
-      this.adjust(mq.matches);
-      mq.addListener(event => this.adjust(event.matches));
-    }
+    const mq = window.matchMedia("(min-width: 600px)");
+    this.adjust(mq.matches);
+    mq.addListener(event => this.adjust(event.matches));
   }
 
   adjust = (matches: boolean): void => {
@@ -84,7 +84,6 @@ export default class Canvas extends EventEmitter {
 
     if (dir === Direction.NoDirection) {
       drawImage(this.canvas, image, sizes, this.curAngle);
-      this.emit("update");
     } else {
       window.requestAnimationFrame(() => this.animate(image, sizes, dir));
     }
@@ -97,7 +96,6 @@ export default class Canvas extends EventEmitter {
       this.curAngle = this.curAngle + this.rate * dir;
       window.requestAnimationFrame(() => this.animate(image, sizes, dir));
     } else {
-      this.emit("update");
       this.prevAngle = this.curAngle === 360 ? 0 : this.curAngle;
     }
   }
@@ -116,9 +114,5 @@ export default class Canvas extends EventEmitter {
     return angle === 90 || angle === 270
       ? { width: height, height: width }
       : { width, height };
-  }
-
-  getDataURL(): string {
-    return this.canvas.toDataURL();
   }
 }

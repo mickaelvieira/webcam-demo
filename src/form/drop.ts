@@ -1,21 +1,22 @@
-import EventEmitter from "../events";
+import { PubSub } from "../events";
 import { loadImageData, readFileContent } from "../helpers";
-import Message from "./message";
+import Message from "../message/message";
 
 interface Props {
   dropArea: HTMLDivElement;
   message: Message;
+  channel: PubSub;
 }
 
-export default class DragAndDrop extends EventEmitter {
+export default class DragAndDrop {
   dropArea: HTMLDivElement;
   message: Message;
+  channel: PubSub;
 
-  constructor({ dropArea, message }: Props) {
-    super();
-
+  constructor({ dropArea, message, channel }: Props) {
     this.dropArea = dropArea;
     this.message = message;
+    this.channel = channel;
 
     ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
       this.dropArea.addEventListener(eventName, this.preventDefaults);
@@ -52,7 +53,7 @@ export default class DragAndDrop extends EventEmitter {
       try {
         const data = await readFileContent(file);
         const image = await loadImageData(data);
-        this.emit("change", image);
+        this.channel.dispatch("change", image);
         this.message.info("Preview updated!");
       } catch (err) {
         this.message.error(err.message);
