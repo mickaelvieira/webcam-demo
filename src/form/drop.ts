@@ -45,7 +45,7 @@ export default class DragAndDrop extends EventEmitter {
     this.dropArea.classList.remove("highlight");
   };
 
-  onDrop = async (event: DragEvent): void => {
+  onDrop = async (event: DragEvent): Promise<void> => {
     const file = this.getFileFromEvent(event);
 
     if (file) {

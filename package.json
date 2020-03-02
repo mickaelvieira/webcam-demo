@@ -1,7 +1,7 @@
 {
-  "name": "test-image-resize",
+  "name": "webcam-demo",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "src/app.js",
   "author": "Mickaël Vieira",
   "private": true,
   "scripts": {
@@ -24,6 +24,7 @@
     "@rollup/plugin-node-resolve": "^7.1.1",
     "@rollup/plugin-typescript": "^3.0.0",
     "core-js": "3",
+    "regenerator-runtime": "^0.13.3",
     "rollup": "^1.26.3",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-uglify": "^6.0.3",

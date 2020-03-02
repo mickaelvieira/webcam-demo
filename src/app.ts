@@ -1,3 +1,5 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import { initCamera } from "./camera";
 import { initEditor } from "./editor";
 import { initForm } from "./form";

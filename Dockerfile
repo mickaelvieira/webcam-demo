@@ -3,6 +3,8 @@ FROM node:13.8.0-alpine3.10 as build
 
 WORKDIR /srv
 
+ENV NODE_ENV=production
+
 COPY package.json .
 COPY yarn.lock .
 
@@ -12,8 +14,6 @@ COPY tsconfig.json tsconfig.json
 COPY rollup.config.js rollup.config.js
 COPY public public
 COPY src src
-
-ENV NODE_ENV=production
 
 RUN yarn build:js
 

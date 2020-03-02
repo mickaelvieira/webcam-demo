@@ -22,6 +22,7 @@ const plugins = [
         corejs: 3,
         modules: false,
         useBuiltIns: "usage",
+        debug: false
       }],
       ["@babel/preset-typescript"]
     ],
