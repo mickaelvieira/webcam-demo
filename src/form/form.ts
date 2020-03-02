@@ -77,7 +77,7 @@ export default class Form extends EventEmitter {
   }
 }
 
-export function initForm(): [Form, DragAndDrop] {
+export function initUploadArea(): [Form, DragAndDrop] {
   const elements = getDOMElements<Elements>({
     msg: ".form-message",
     dropArea: ".drop-area",

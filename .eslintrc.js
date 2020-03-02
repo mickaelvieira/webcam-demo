@@ -5,9 +5,9 @@ module.exports = {
   },
   parser: "@typescript-eslint/parser",
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
-    'plugin:@typescript-eslint/recommended',
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
     "plugin:jsx-a11y/recommended"
   ],
@@ -17,7 +17,6 @@ module.exports = {
   },
   rules: {
     "prettier/prettier": "error",
-    "jsx-a11y/no-autofocus": "off",
     "@typescript-eslint/no-unused-vars": ["error", {
       "varsIgnorePattern": "^_$"
     }]

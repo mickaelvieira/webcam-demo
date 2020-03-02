@@ -29,7 +29,7 @@ export default class DragAndDrop extends EventEmitter {
       this.dropArea.addEventListener(eventName, this.unhighlight);
     });
 
-    this.dropArea.addEventListener("drop", this.onDrop, false);
+    this.dropArea.addEventListener("drop", this.onDrop);
   }
 
   preventDefaults = (event: Event): void => {
