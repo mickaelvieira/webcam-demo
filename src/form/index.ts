@@ -1,4 +1,4 @@
-import { PubSub } from "../events";
+import { Channel } from "../channel";
 import Form, { FormButtons } from "./form";
 import DragAndDrop from "./drop";
 import { getDOMElements } from "../helpers";
@@ -10,7 +10,7 @@ interface Elements extends FormButtons {
   dropArea: HTMLDivElement;
 }
 
-function makeUploadArea(channel: PubSub): [Form, DragAndDrop] {
+function makeUploadArea(channel: Channel): [Form, DragAndDrop] {
   const elements = getDOMElements<Elements>({
     msg: ".form-message",
     dropArea: ".drop-area",

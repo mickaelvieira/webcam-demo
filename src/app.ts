@@ -4,10 +4,10 @@ import { makeCamera } from "./camera";
 import { makeEditor } from "./editor";
 import { makeUploadArea } from "./form";
 import { makeTabs } from "./tabs";
-import { PubSub } from "./events";
+import { Channel } from "./channel";
 
 (function(): void {
-  const channel = new PubSub();
+  const channel = new Channel();
 
   makeTabs();
   makeCamera(channel);

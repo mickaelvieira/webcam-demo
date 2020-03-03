@@ -1,15 +1,16 @@
-import { PubSub } from "../events";
+import { Channel } from "../channel";
 import { Dimensions } from "../types";
 import { drawImage, calculateAspectRatioFit } from "../helpers";
+import { EventName } from "../types";
 
 interface Props {
   canvas: HTMLCanvasElement;
-  channel: PubSub;
+  channel: Channel;
 }
 
 export default class Document {
   canvas: HTMLCanvasElement;
-  channel: PubSub;
+  channel: Channel;
 
   constructor({ canvas, channel }: Props) {
     this.canvas = canvas;
@@ -26,7 +27,7 @@ export default class Document {
     );
 
     drawImage(this.canvas, image, sizes, angle);
-    this.channel.dispatch("updated", this.canvas);
+    this.channel.dispatch(EventName.DocumentWasUpdated, this.canvas);
   }
   getBoundaries({ width, height }: Dimensions, angle: number): Dimensions {
     return angle === 90 || angle === 270

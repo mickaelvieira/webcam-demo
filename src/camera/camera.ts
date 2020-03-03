@@ -1,8 +1,9 @@
-import { PubSub } from "../events";
+import { Channel } from "../channel";
 import { Format } from "../types";
 import { loadImageData, calculateRatio } from "../helpers";
 import Logger from "../logger";
 import Message from "../message/message";
+import { EventName } from "../types";
 
 export interface CameraButtons {
   snap: HTMLButtonElement;
@@ -14,7 +15,7 @@ interface Props {
   video: HTMLVideoElement;
   snapshot: HTMLCanvasElement;
   message: Message;
-  channel: PubSub;
+  channel: Channel;
   logger?: Logger;
   buttons: CameraButtons;
 }
@@ -23,7 +24,7 @@ export default class Camera {
   stream?: MediaStream;
   video: HTMLVideoElement;
   message: Message;
-  channel: PubSub;
+  channel: Channel;
   snapshot: HTMLCanvasElement;
   logger?: Logger;
 
@@ -101,7 +102,7 @@ export default class Camera {
       const data = this.snapshot.toDataURL("image/png");
       const image = await loadImageData(data);
 
-      this.channel.dispatch("change", image);
+      this.channel.dispatch(EventName.ImageWasUpdated, image);
       this.log("Photo was created");
       this.message.info("Preview updated!");
       this.stop();

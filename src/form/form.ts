@@ -1,6 +1,7 @@
 import Message from "../message/message";
 import { loadImageData, readFileContent } from "../helpers";
-import { PubSub } from "../events";
+import { Channel } from "../channel";
+import { EventName } from "../types";
 
 export interface FormButtons {
   open: HTMLButtonElement;
@@ -9,14 +10,14 @@ export interface FormButtons {
 interface Props {
   form: HTMLFormElement;
   message: Message;
-  channel: PubSub;
+  channel: Channel;
   buttons: FormButtons;
 }
 
 export default class Form {
   form: HTMLFormElement;
   message: Message;
-  channel: PubSub;
+  channel: Channel;
 
   constructor({ form, message, channel, buttons: { open } }: Props) {
     this.form = form;
@@ -46,7 +47,7 @@ export default class Form {
       try {
         const data = await readFileContent(file);
         const image = await loadImageData(data);
-        this.channel.dispatch("change", image);
+        this.channel.dispatch(EventName.ImageWasUpdated, image);
         this.message.info("Preview updated!");
       } catch (err) {
         this.message.error(err.message);

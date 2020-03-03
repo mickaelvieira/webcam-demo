@@ -1,5 +1,5 @@
 import Camera, { CameraButtons } from "./camera";
-import { PubSub } from "../events";
+import { Channel } from "../channel";
 import { getDOMElements } from "../helpers";
 import Logger from "../logger";
 import Message from "../message/message";
@@ -11,7 +11,7 @@ interface Elements extends CameraButtons {
   logs: HTMLDivElement;
 }
 
-function makeCamera(channel: PubSub): Camera {
+function makeCamera(channel: Channel): Camera {
   const elements = getDOMElements<Elements>({
     start: ".btn-start-video",
     stop: ".btn-stop-video",

@@ -1,17 +1,18 @@
-import { PubSub } from "../events";
+import { Channel } from "../channel";
 import { loadImageData, readFileContent } from "../helpers";
 import Message from "../message/message";
+import { EventName } from "../types";
 
 interface Props {
   dropArea: HTMLDivElement;
   message: Message;
-  channel: PubSub;
+  channel: Channel;
 }
 
 export default class DragAndDrop {
   dropArea: HTMLDivElement;
   message: Message;
-  channel: PubSub;
+  channel: Channel;
 
   constructor({ dropArea, message, channel }: Props) {
     this.dropArea = dropArea;
@@ -53,7 +54,7 @@ export default class DragAndDrop {
       try {
         const data = await readFileContent(file);
         const image = await loadImageData(data);
-        this.channel.dispatch("change", image);
+        this.channel.dispatch(EventName.ImageWasUpdated, image);
         this.message.info("Preview updated!");
       } catch (err) {
         this.message.error(err.message);

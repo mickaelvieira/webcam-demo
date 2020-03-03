@@ -2,8 +2,9 @@ import Editor, { EditorButtons } from "./editor";
 import Preview from "./preview";
 import Download from "./download";
 import Document from "./document";
-import { PubSub } from "../events";
+import { Channel } from "../channel";
 import { getDOMElements } from "../helpers";
+import { EventName } from "../types";
 
 interface Elements extends EditorButtons {
   canvas1: HTMLCanvasElement;
@@ -11,7 +12,7 @@ interface Elements extends EditorButtons {
   dl: HTMLAnchorElement;
 }
 
-function makeEditor(channel: PubSub): Editor {
+function makeEditor(channel: Channel): Editor {
   const elements = getDOMElements<Elements>({
     left: ".btn-rotate-left",
     right: ".btn-rotate-right",
@@ -36,10 +37,10 @@ function makeEditor(channel: PubSub): Editor {
     }
   });
 
-  channel.subscribe("change", image => {
+  channel.subscribe(EventName.ImageWasUpdated, image => {
     editor.updateImage(image);
   });
-  channel.subscribe("updated", doc => {
+  channel.subscribe(EventName.DocumentWasUpdated, doc => {
     editor.updateDownloadLink(doc);
   });
 

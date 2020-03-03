@@ -111,8 +111,9 @@ export default class Preview {
   }
 
   getBoundaries({ width, height }: Dimensions, angle: number): Dimensions {
-    return angle === 90 || angle === 270
-      ? { width: height, height: width }
-      : { width, height };
+    if (angle === 90 || angle === 270) {
+      [width, height] = [height, width];
+    }
+    return { width, height };
   }
 }
