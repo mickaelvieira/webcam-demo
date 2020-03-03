@@ -1,9 +1,8 @@
 import { Channel } from "../channel";
-import { Format } from "../types";
+import { Format, EventName } from "../types";
 import { loadImageData, calculateRatio } from "../helpers";
 import Logger from "../logger";
 import Message from "../message/message";
-import { EventName } from "../types";
 
 export interface CameraButtons {
   snap: HTMLButtonElement;

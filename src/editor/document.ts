@@ -1,7 +1,6 @@
 import { Channel } from "../channel";
-import { Dimensions } from "../types";
+import { Dimensions, EventName } from "../types";
 import { drawImage, calculateAspectRatioFit } from "../helpers";
-import { EventName } from "../types";
 
 interface Props {
   canvas: HTMLCanvasElement;
