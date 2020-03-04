@@ -48,7 +48,7 @@
   </div>
 
   <main class="main">
-    <article class="container">
+    <article class="component">
 
       <div class="tabs">
 
@@ -60,7 +60,7 @@
               </svg>
             </span>
             <span class="text-wrapper">
-              From your computer
+              Computer
             </span>
           </button>
           <button class="tabbutton" role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2" tabindex="-1">
@@ -70,7 +70,7 @@
               </svg>
             </span>
             <span class="text-wrapper">
-              From your camera
+              Camera
             </span>
           </button>
           <button class="tabbutton" role="tab" aria-selected="false" aria-controls="panel-3" id="tab-3" tabindex="-1">
@@ -105,7 +105,9 @@
 
         <div class="tabpanel" role="tabpanel" tabindex="0" aria-labelledby="tab-2" hidden>
           <div class="video-message message"></div>
-          <video class="video"></video>
+          <div class="video-wrapper">
+            <video class="video"></video>
+          </div>
           <canvas class="capture"></canvas>
           <div class="buttons">
             <button type="button" class="btn btn-capture-photo ">
@@ -114,7 +116,7 @@
                   <use href="#icon-snap"></use>
                 </svg>
               </span>
-              <span class="text-wrapper">Take a photo</span>
+              <span class="text-wrapper">Snap</span>
             </button>
             <button type="button" class="btn btn-start-video ">
               <span class="icon-wrapper">
@@ -138,7 +140,9 @@
 
         <div class="tabpanel" role="tabpanel" tabindex="0" aria-labelledby="tab-3" hidden>
           <div class="editor">
-            <canvas class="preview" width="300px" height="150px"></canvas>
+            <div class="preview-wrapper">
+              <canvas class="preview" width="300px" height="150px"></canvas>
+            </div>
             <canvas class="canvas" width="800px" height="1000px"></canvas>
             <div class="buttons">
               <button type="button" class="btn btn-rotate btn-rotate-left">
@@ -147,12 +151,18 @@
                     <use href="#icon-rotate-left"></use>
                   </svg>
                 </span>
+                <span class="text-wrapper">
+                  Rotate left
+                </span>
               </button>
               <button type="button" class="btn btn-rotate btn-rotate-right">
                 <span class="icon-wrapper">
                   <svg class="icon" width="22px" height="22px">
                     <use href="#icon-rotate-right"></use>
                   </svg>
+                </span>
+                <span class="text-wrapper">
+                  Rotate right
                 </span>
               </button>
               <a href="#" class="btn btn-download">
