@@ -958,7 +958,7 @@ a:visited {
 }
 
 .canvas {
-  display: none;
+  /* display: none; */
 }
 
 /* Video

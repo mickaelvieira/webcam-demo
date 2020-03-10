@@ -12,6 +12,9 @@ build:
 	yarn
 	yarn build:js
 
+build-go:
+	GOOS=js GOARCH=wasm go build -o public/main.wasm
+
 # Building using Cloud Build
 build-prod:
 	gcloud builds submit --tag $(GCP_IMAGE)

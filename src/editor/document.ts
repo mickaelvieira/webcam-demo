@@ -28,6 +28,7 @@ export default class Document {
     drawImage(this.canvas, image, sizes, angle);
     this.channel.dispatch(EventName.DocumentWasUpdated, this.canvas);
   }
+
   getBoundaries({ width, height }: Dimensions, angle: number): Dimensions {
     return angle === 90 || angle === 270
       ? { width: height, height: width }

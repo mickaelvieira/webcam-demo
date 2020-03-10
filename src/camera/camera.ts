@@ -1,6 +1,6 @@
 import { Channel } from "../channel";
 import { Format, EventName } from "../types";
-import { loadImageData, calculateRatio } from "../helpers";
+import { loadImage, calculateRatio, getCanvasData } from "../helpers";
 import Logger from "../logger";
 import Message from "../message/message";
 
@@ -98,9 +98,11 @@ export default class Camera {
         this.snapshot.height
       );
 
-      const data = this.snapshot.toDataURL("image/png");
-      const image = await loadImageData(data);
+      const url = this.snapshot.toDataURL("image/png");
+      const image = await loadImage(url);
+      const bytes = getCanvasData(this.snapshot);
 
+      this.channel.dispatch(EventName.SourceWasUpdated, bytes);
       this.channel.dispatch(EventName.ImageWasUpdated, image);
       this.log("Photo was created");
       this.message.info("Preview updated!");

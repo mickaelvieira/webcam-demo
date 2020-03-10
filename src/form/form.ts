@@ -1,5 +1,5 @@
 import Message from "../message/message";
-import { loadImageData, readFileContent } from "../helpers";
+import { loadImage, readAsDataURL, readAsArrayBuffer } from "../helpers";
 import { Channel } from "../channel";
 import { EventName } from "../types";
 
@@ -45,8 +45,16 @@ export default class Form {
 
     if (file) {
       try {
-        const data = await readFileContent(file);
-        const image = await loadImageData(data);
+        const url = await readAsDataURL(file);
+        const bytes = await readAsArrayBuffer(file);
+        const image = await loadImage(url);
+        const i = document.querySelector(".image-cache");
+        console.log("---");
+        console.log(image);
+        i.src = image.src;
+        console.log(i);
+        console.log("---");
+        this.channel.dispatch(EventName.SourceWasUpdated, bytes);
         this.channel.dispatch(EventName.ImageWasUpdated, image);
         this.message.info("Preview updated!");
       } catch (err) {

@@ -1,6 +1,6 @@
 import { Dimensions, Format } from "./types";
 
-export function readFileContent(file: File): Promise<string> {
+export function readAsDataURL(file: File): Promise<string> {
   const reader = new FileReader();
   reader.readAsDataURL(file);
   return new Promise((resolve, reject) => {
@@ -13,7 +13,26 @@ export function readFileContent(file: File): Promise<string> {
   });
 }
 
-export function loadImageData(source: string): Promise<HTMLImageElement> {
+export function readAsArrayBuffer(file: File): Promise<Uint8Array> {
+  const reader = new FileReader();
+  reader.readAsArrayBuffer(file);
+  return new Promise((resolve, reject) => {
+    reader.onload = (event): void => {
+      resolve(
+        new Uint8Array((event.target as FileReader).result as ArrayBuffer)
+      );
+    };
+    reader.onerror = (): void => {
+      reject(new Error("Cannot read the file"));
+    };
+  });
+}
+
+export function convertBytesToBlob(bytes: Uint8Array, type: string): Blob {
+  return new Blob([bytes], { type });
+}
+
+export function loadImage(source: string): Promise<HTMLImageElement> {
   const image = new Image();
   image.src = source;
   return new Promise((resolve, reject) => {
@@ -24,6 +43,23 @@ export function loadImageData(source: string): Promise<HTMLImageElement> {
       reject(new Error("Cannot read the image"));
     };
   });
+}
+
+export function getCanvasData(canvas: HTMLCanvasElement): Uint8Array {
+  const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    throw new Error("Cannot get 2d context");
+  }
+
+  const image = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const data = image.data;
+  const buffer = new ArrayBuffer(data.length);
+  const binary = new Uint8Array(buffer);
+
+  for (let i = 0; i < binary.length; i++) {
+    binary[i] = data[i];
+  }
+  return binary;
 }
 
 export function calculateAspectRatioFit(
@@ -126,11 +162,11 @@ export function calculateFitSize(
   throw new Error("Unsupported format");
 }
 
-interface Input {
+interface Selectors {
   [name: string]: string;
 }
 
-export function getDOMElements<T>(selectors: Input): T {
+export function getDOMElements<T>(selectors: Selectors): T {
   const elements = Object.create(null);
   for (const [name, selector] of Object.entries(selectors)) {
     const element = document.querySelector(selector);

@@ -5,7 +5,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     <title>Camera & File Upload - Proof of concept!</title>
     <link href="/styles.css" rel="stylesheet">
-    <script src="/app.js"  defer></script>
+    <script src="/wasm_exec.js"></script>
+    <script src="/app.js" defer></script>
+    <script>
+      function createDOMImage(url) {
+        const image = new Image();
+        image.src = url;
+
+        console.log(image)
+        return image;
+      }
+    </script>
   </head>
 <body>
 
@@ -100,6 +110,7 @@
                 <span class="text-wrapper">Choose a file</span>
               </button> or drop it.
             </form>
+            <img src="" class="image-cache" />
           </div>
         </div>
 

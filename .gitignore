@@ -1,3 +1,4 @@
 node_modules
 *.log
 public/app.js
+public/main.wasm

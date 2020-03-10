@@ -57,7 +57,7 @@ export default class Editor {
     const angle = this.angles[this.angle];
 
     this.preview.update(this.image, angle, dir);
-    this.document.update(this.image, angle);
+    // this.document.update(this.image, angle);
   }
 
   rotateRight = (): void => {

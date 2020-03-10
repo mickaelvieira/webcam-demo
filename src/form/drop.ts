@@ -1,5 +1,5 @@
 import { Channel } from "../channel";
-import { loadImageData, readFileContent } from "../helpers";
+import { loadImage, readAsDataURL, readAsArrayBuffer } from "../helpers";
 import Message from "../message/message";
 import { EventName } from "../types";
 
@@ -52,8 +52,10 @@ export default class DragAndDrop {
 
     if (file) {
       try {
-        const data = await readFileContent(file);
-        const image = await loadImageData(data);
+        const data = await readAsDataURL(file);
+        const bytes = await readAsArrayBuffer(file);
+        const image = await loadImage(data);
+        this.channel.dispatch(EventName.SourceWasUpdated, bytes);
         this.channel.dispatch(EventName.ImageWasUpdated, image);
         this.message.info("Preview updated!");
       } catch (err) {
