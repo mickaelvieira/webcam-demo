@@ -3,7 +3,8 @@ import {
   drawImage,
   calculateAspectRatioFit,
   isLandscape,
-  calculateFitSize
+  calculateFitSize,
+  getBoundaries
 } from "../helpers";
 
 export enum Direction {
@@ -73,7 +74,7 @@ export default class Preview {
     this.nextAngle = angle;
     this.curAngle = this.prevAngle;
 
-    const max = this.getBoundaries(this.canvas, this.nextAngle);
+    const max = getBoundaries(this.canvas, this.nextAngle);
 
     const sizes = calculateAspectRatioFit(
       image.width,
@@ -108,12 +109,5 @@ export default class Preview {
       return this.curAngle > this.nextAngle;
     }
     return false;
-  }
-
-  getBoundaries({ width, height }: Dimensions, angle: number): Dimensions {
-    if (angle === 90 || angle === 270) {
-      [width, height] = [height, width];
-    }
-    return { width, height };
   }
 }

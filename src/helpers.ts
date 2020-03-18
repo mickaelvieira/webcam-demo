@@ -141,3 +141,13 @@ export function getDOMElements<T>(selectors: Input): T {
   }
   return elements;
 }
+
+export function getBoundaries(
+  { width, height }: Dimensions,
+  angle: number
+): Dimensions {
+  if (angle === 90 || angle === 270) {
+    [width, height] = [height, width];
+  }
+  return { width, height };
+}
