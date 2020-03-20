@@ -16,13 +16,14 @@ function makeCamera(channel: Channel): Camera {
     start: ".btn-start-video",
     stop: ".btn-stop-video",
     snap: ".btn-capture-photo",
+    pip: ".btn-pip",
     msg: ".video-message",
     video: ".video",
     snapshot: ".capture",
     logs: ".camera-logs"
   });
 
-  const { start, stop, snap, msg, video, snapshot, logs } = elements;
+  const { start, stop, snap, pip, msg, video, snapshot, logs } = elements;
 
   const logger = new Logger(logs);
   const message = new Message(msg);
@@ -36,7 +37,8 @@ function makeCamera(channel: Channel): Camera {
     buttons: {
       snap,
       start,
-      stop
+      stop,
+      pip
     }
   });
 }

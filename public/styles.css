@@ -983,6 +983,14 @@ a:visited {
   margin: 0 auto;
 }
 
+.btn-pip {
+  display: none;
+}
+
+.btn-pip.active {
+  display: flex;
+}
+
 .camera-logs {
   font-family: monospace;
   padding: var(--spacing-2) 0;

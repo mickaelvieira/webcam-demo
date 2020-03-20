@@ -8,6 +8,7 @@ export interface CameraButtons {
   snap: HTMLButtonElement;
   start: HTMLButtonElement;
   stop: HTMLButtonElement;
+  pip: HTMLButtonElement;
 }
 
 interface Props {
@@ -22,6 +23,7 @@ interface Props {
 export default class Camera {
   stream?: MediaStream;
   video: HTMLVideoElement;
+  pip: HTMLButtonElement;
   message: Message;
   channel: Channel;
   snapshot: HTMLCanvasElement;
@@ -33,10 +35,11 @@ export default class Camera {
     message,
     channel,
     logger,
-    buttons: { snap, start, stop }
+    buttons: { snap, start, stop, pip }
   }: Props) {
     this.video = video;
     this.snapshot = snapshot;
+    this.pip = pip;
     this.message = message;
     this.channel = channel;
     this.logger = logger;
@@ -45,6 +48,17 @@ export default class Camera {
     start.addEventListener("click", this.start);
     stop.addEventListener("click", this.stop);
 
+    this.pip.addEventListener("click", this.handlePip);
+    this.video.addEventListener("enterpictureinpicture", () => {
+      this.log(`Picture In Picture mode entered`);
+    });
+    this.video.addEventListener("leavepictureinpicture", () => {
+      this.log("Picture In Picture mode exited");
+    });
+    this.video.addEventListener("loadedmetadata", this.handleVideoChange);
+    this.video.addEventListener("emptied", this.handleVideoChange);
+
+    this.setPipButton();
     this.getDevices();
   }
 
@@ -110,6 +124,24 @@ export default class Camera {
     }
   };
 
+  handlePip = async (): Promise<void> => {
+    if (!this.video) {
+      return;
+    }
+
+    this.log("Picture-in-Picture handler");
+
+    try {
+      if (this.video !== document.pictureInPictureElement) {
+        await this.video.requestPictureInPicture();
+      } else {
+        await document.exitPictureInPicture();
+      }
+    } catch (err) {
+      this.log(err);
+    }
+  };
+
   async getDevices(): Promise<void> {
     const devices = await navigator.mediaDevices.enumerateDevices();
     for (const device of devices) {
@@ -133,6 +165,23 @@ export default class Camera {
     },
     audio: false
   });
+
+  handleVideoChange = (): void => {
+    this.setPipButton();
+  };
+
+  setPipButton(): void {
+    const isDisabled =
+      this.video.readyState === 0 ||
+      !document.pictureInPictureEnabled ||
+      this.video.disablePictureInPicture;
+
+    if (!isDisabled) {
+      this.pip.classList.add("active");
+    } else {
+      this.pip.classList.remove("active");
+    }
+  }
 
   log(message: string): void {
     if (this.logger) {

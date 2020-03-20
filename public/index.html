@@ -44,6 +44,9 @@
         <path d="M15.55 5.55L11 1v3.07C7.06 4.56 4 7.92 4 12s3.05 7.44 7 7.93v-2.02c-2.84-.48-5-2.94-5-5.91s2.16-5.43 5-5.91V10l4.55-4.45zM19.93 11c-.17-1.39-.72-2.73-1.62-3.89l-1.42 1.42c.54.75.88 1.6 1.02 2.47h2.02zM13 17.9v2.02c1.39-.17 2.74-.71 3.9-1.61l-1.44-1.44c-.75.54-1.59.89-2.46 1.03zm3.89-2.42l1.42 1.41c.9-1.16 1.45-2.5 1.62-3.89h-2.02c-.14.87-.48 1.72-1.02 2.48z"/>
       </symbol>
 
+      <symbol id="icon-telly" viewBox="0 0 512 512">
+        <path d="M451.7 78H60.3C34.8 78 14 98.8 14 124.3v215.5c0 25.5 20.8 46.3 46.3 46.3h391.5c25.5 0 46.3-20.8 46.3-46.3V124.3C498 98.8 477.2 78 451.7 78zM470 339.7c0 10.1-8.2 18.3-18.3 18.3H60.3c-10.1 0-18.3-8.2-18.3-18.3V124.3c0-10.1 8.2-18.3 18.3-18.3h391.5c10.1 0 18.3 8.2 18.3 18.3v215.4z"/><path d="M436 128H76c-6.6 0-12 5.4-12 12v184c0 6.6 5.4 12 12 12h360c6.6 0 12-5.4 12-12V140c0-6.6-5.4-12-12-12zM370 406H142c-7.7 0-14 6.3-14 14s6.3 14 14 14h228c7.7 0 14-6.3 14-14s-6.3-14-14-14z"/>
+      </symbol>
     </svg>
   </div>
 
@@ -110,7 +113,7 @@
           </div>
           <canvas class="capture"></canvas>
           <div class="buttons">
-            <button type="button" class="btn btn-capture-photo ">
+            <button type="button" class="btn btn-capture-photo">
               <span class="icon-wrapper">
                 <svg class="icon icon-snap" width="22px" height="22px" >
                   <use href="#icon-snap"></use>
@@ -118,7 +121,7 @@
               </span>
               <span class="text-wrapper">Snap</span>
             </button>
-            <button type="button" class="btn btn-start-video ">
+            <button type="button" class="btn btn-start-video">
               <span class="icon-wrapper">
                 <svg class="icon" width="22px" height="22px">
                   <use href="#icon-play"></use>
@@ -126,13 +129,21 @@
               </span>
               <span class="text-wrapper">Start</span>
             </button>
-            <button type="button" class="btn btn-stop-video ">
+            <button type="button" class="btn btn-stop-video">
               <span class="icon-wrapper">
                 <svg class="icon" width="22px" height="22px">
                   <use href="#icon-stop"></use>
                 </svg>
               </span>
               <span class="text-wrapper">Stop</span>
+            </button>
+            <button type="button" class="btn btn-pip">
+              <span class="icon-wrapper">
+                <svg class="icon" width="22px" height="22px">
+                  <use href="#icon-telly"></use>
+                </svg>
+              </span>
+              <span class="text-wrapper">PiP</span>
             </button>
           </div>
           <div class="camera-logs"></div>
