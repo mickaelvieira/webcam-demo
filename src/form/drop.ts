@@ -19,15 +19,15 @@ export default class DragAndDrop {
     this.message = message;
     this.channel = channel;
 
-    ["dragenter", "dragover", "dragleave", "drop"].forEach(eventName => {
+    ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
       this.dropArea.addEventListener(eventName, this.preventDefaults);
     });
 
-    ["dragenter", "dragover"].forEach(eventName => {
+    ["dragenter", "dragover"].forEach((eventName) => {
       this.dropArea.addEventListener(eventName, this.highlight);
     });
 
-    ["dragleave", "drop"].forEach(eventName => {
+    ["dragleave", "drop"].forEach((eventName) => {
       this.dropArea.addEventListener(eventName, this.unhighlight);
     });
 

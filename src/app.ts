@@ -6,7 +6,7 @@ import { makeUploadArea } from "./form";
 import { makeTabs } from "./tabs";
 import { Channel } from "./channel";
 
-(function(): void {
+(function (): void {
   const channel = new Channel();
 
   makeTabs();

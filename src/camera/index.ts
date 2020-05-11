@@ -19,7 +19,7 @@ function makeCamera(channel: Channel): Camera {
     msg: ".video-message",
     video: ".video",
     snapshot: ".capture",
-    logs: ".camera-logs"
+    logs: ".camera-logs",
   });
 
   const { start, stop, snap, msg, video, snapshot, logs } = elements;
@@ -36,8 +36,8 @@ function makeCamera(channel: Channel): Camera {
     buttons: {
       snap,
       start,
-      stop
-    }
+      stop,
+    },
   });
 }
 

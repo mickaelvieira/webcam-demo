@@ -5,10 +5,10 @@ export interface Dimensions {
 
 export enum Format {
   Wide = "wide",
-  Standard = "standard"
+  Standard = "standard",
 }
 
 export enum EventName {
   ImageWasUpdated = "image_updated",
-  DocumentWasUpdated = "document_updated"
+  DocumentWasUpdated = "document_updated",
 }

@@ -18,7 +18,7 @@ function makeEditor(channel: Channel): Editor {
     right: ".btn-rotate-right",
     canvas1: ".preview",
     canvas2: ".canvas",
-    dl: ".btn-download"
+    dl: ".btn-download",
   });
 
   const { left, right, dl, canvas1, canvas2 } = elements;
@@ -33,14 +33,14 @@ function makeEditor(channel: Channel): Editor {
     download,
     buttons: {
       left,
-      right
-    }
+      right,
+    },
   });
 
-  channel.subscribe(EventName.ImageWasUpdated, image => {
+  channel.subscribe(EventName.ImageWasUpdated, (image) => {
     editor.updateImage(image);
   });
-  channel.subscribe(EventName.DocumentWasUpdated, doc => {
+  channel.subscribe(EventName.DocumentWasUpdated, (doc) => {
     editor.updateDownloadLink(doc);
   });
 
