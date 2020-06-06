@@ -27,7 +27,7 @@ export class Channel {
 
   dispatch(eventName: string, message: any): void {
     if (Array.isArray(this.subscribers[eventName])) {
-      this.subscribers[eventName].forEach(subscriber => {
+      this.subscribers[eventName].forEach((subscriber) => {
         subscriber(message);
       });
     }

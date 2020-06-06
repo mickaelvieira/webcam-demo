@@ -4,13 +4,13 @@ import {
   calculateAspectRatioFit,
   isLandscape,
   calculateFitSize,
-  getBoundaries
+  getBoundaries,
 } from "../helpers";
 
 export enum Direction {
   ClockWise = 1,
   NoDirection = 0,
-  AntiClockWise = -1
+  AntiClockWise = -1,
 }
 
 interface Props {
@@ -33,7 +33,7 @@ export default class Preview {
 
     const mq = window.matchMedia("(min-width: 600px)");
     this.adjust(mq.matches);
-    mq.addListener(event => this.adjust(event.matches));
+    mq.addListener((event) => this.adjust(event.matches));
   }
 
   adjust = (matches: boolean): void => {

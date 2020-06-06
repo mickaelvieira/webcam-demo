@@ -36,7 +36,7 @@ export function calculateAspectRatioFit(
 
   return {
     width: srcWidth * ratio,
-    height: srcHeight * ratio
+    height: srcHeight * ratio,
   };
 }
 

@@ -15,7 +15,7 @@ function makeUploadArea(channel: Channel): [Form, DragAndDrop] {
     msg: ".form-message",
     dropArea: ".drop-area",
     form: ".form-image",
-    open: ".btn-open-files"
+    open: ".btn-open-files",
   });
 
   const { msg, dropArea, form, open } = elements;

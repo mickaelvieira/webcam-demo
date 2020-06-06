@@ -1,8 +1,8 @@
 import { Channel } from "../channel";
-import { Format, EventName } from "../types";
-import { loadImageData, calculateRatio } from "../helpers";
+import { calculateRatio, loadImageData } from "../helpers";
 import Logger from "../logger";
 import Message from "../message/message";
+import { EventName, Format } from "../types";
 
 export interface CameraButtons {
   snap: HTMLButtonElement;
@@ -35,7 +35,7 @@ export default class Camera {
     message,
     channel,
     logger,
-    buttons: { snap, start, stop, pip }
+    buttons: { snap, start, stop, pip },
   }: Props) {
     this.video = video;
     this.snapshot = snapshot;
@@ -157,13 +157,13 @@ export default class Camera {
     video: {
       facingMode: { ideal: "environment" },
       width: {
-        ideal: this.video.clientWidth
+        ideal: this.video.clientWidth,
       },
       aspectRatio: {
-        ideal: calculateRatio(Format.Standard)
-      }
+        ideal: calculateRatio(Format.Standard),
+      },
     },
-    audio: false
+    audio: false,
   });
 
   handleVideoChange = (): void => {

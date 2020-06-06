@@ -30,7 +30,7 @@ export default class Editor {
     preview,
     document,
     download,
-    buttons: { left, right }
+    buttons: { left, right },
   }: Props) {
     this.document = document;
     this.preview = preview;

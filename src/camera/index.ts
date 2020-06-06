@@ -1,8 +1,8 @@
-import Camera, { CameraButtons } from "./camera";
 import { Channel } from "../channel";
 import { getDOMElements } from "../helpers";
 import Logger from "../logger";
 import Message from "../message/message";
+import Camera, { CameraButtons } from "./camera";
 
 interface Elements extends CameraButtons {
   video: HTMLVideoElement;
@@ -20,7 +20,7 @@ function makeCamera(channel: Channel): Camera {
     msg: ".video-message",
     video: ".video",
     snapshot: ".capture",
-    logs: ".camera-logs"
+    logs: ".camera-logs",
   });
 
   const { start, stop, snap, pip, msg, video, snapshot, logs } = elements;
@@ -38,8 +38,8 @@ function makeCamera(channel: Channel): Camera {
       snap,
       start,
       stop,
-      pip
-    }
+      pip,
+    },
   });
 }
 
