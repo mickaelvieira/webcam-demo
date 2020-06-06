@@ -98,11 +98,18 @@ export function drawImage(
 }
 
 export function isPortrait(): boolean {
-  return window.innerHeight > window.innerWidth;
+  return (
+    ("orientation" in screen && screen.orientation.type.includes("portrait")) ||
+    window.innerHeight > window.innerWidth
+  );
 }
 
 export function isLandscape(): boolean {
-  return window.innerHeight < window.innerWidth;
+  return (
+    ("orientation" in screen &&
+      screen.orientation.type.includes("landscape")) ||
+    window.innerHeight < window.innerWidth
+  );
 }
 
 export function calculateRatio(format: Format = Format.Standard): number {
