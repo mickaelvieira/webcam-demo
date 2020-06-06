@@ -6,6 +6,9 @@ updates:
     interval: daily
     time: '11:00'
   open-pull-requests-limit: 10
+  automerged_updates:
+    dependency_type: "all"
+    update_type: "semver:minor"
 - package-ecosystem: docker
   directory: "/"
   schedule:
