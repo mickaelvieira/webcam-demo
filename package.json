@@ -25,7 +25,7 @@
     "@rollup/plugin-typescript": "^4.1",
     "core-js": "3",
     "regenerator-runtime": "^0.13.3",
-    "rollup": "^2.15",
+    "rollup": "^2.16",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-uglify": "^6.0.3",
     "serve": "^11.3.2",
