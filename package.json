@@ -22,7 +22,7 @@
     "@babel/preset-typescript": "^7.10.1",
     "@rollup/plugin-commonjs": "^13.0 ",
     "@rollup/plugin-node-resolve": "^8.0",
-    "@rollup/plugin-typescript": "^4.1",
+    "@rollup/plugin-typescript": "^5.0",
     "core-js": "3",
     "regenerator-runtime": "^0.13.3",
     "rollup": "^2.17",
