@@ -1,5 +1,5 @@
 # build
-FROM node:15.3.0-alpine3.10 as build
+FROM node:15.5.0-alpine3.10 as build
 
 WORKDIR /srv
 
