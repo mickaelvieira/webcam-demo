@@ -25,7 +25,10 @@ export class Channel {
     }
   }
 
-  dispatch(eventName: string, message: any): void {
+  dispatch(
+    eventName: string,
+    message: HTMLCanvasElement | HTMLImageElement
+  ): void {
     if (Array.isArray(this.subscribers[eventName])) {
       this.subscribers[eventName].forEach((subscriber) => {
         subscriber(message);
