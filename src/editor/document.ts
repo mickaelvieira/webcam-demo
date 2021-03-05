@@ -1,6 +1,6 @@
 import { Channel } from "../channel";
+import { calculateAspectRatioFit, drawImage, getBoundaries } from "../helpers";
 import { EventName } from "../types";
-import { drawImage, calculateAspectRatioFit, getBoundaries } from "../helpers";
 
 interface Props {
   canvas: HTMLCanvasElement;
@@ -26,6 +26,7 @@ export default class Document {
     );
 
     drawImage(this.canvas, image, sizes, angle);
+
     this.channel.dispatch(EventName.DocumentWasUpdated, this.canvas);
   }
 }

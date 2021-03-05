@@ -1,10 +1,10 @@
-import Editor, { EditorButtons } from "./editor";
-import Preview from "./preview";
-import Download from "./download";
-import Document from "./document";
 import { Channel } from "../channel";
 import { getDOMElements } from "../helpers";
 import { EventName } from "../types";
+import Document from "./document";
+import Download from "./download";
+import Editor, { EditorButtons } from "./editor";
+import Preview from "./preview";
 
 interface Elements extends EditorButtons {
   canvas1: HTMLCanvasElement;
@@ -37,11 +37,11 @@ function makeEditor(channel: Channel): Editor {
     },
   });
 
-  channel.subscribe(EventName.ImageWasUpdated, (image) => {
+  channel.subscribe(EventName.ImageWasUpdated, (image: HTMLImageElement) => {
     editor.updateImage(image);
   });
-  channel.subscribe(EventName.DocumentWasUpdated, (doc) => {
-    editor.updateDownloadLink(doc);
+  channel.subscribe(EventName.DocumentWasUpdated, (canvas: HTMLCanvasElement) => {
+    editor.updateDownloadLink(canvas);
   });
 
   return editor;
