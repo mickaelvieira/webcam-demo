@@ -29,13 +29,13 @@ fmt:
 	yarn lint:js:fix
 
 docker-build:
-	docker build --rm --tag $(GCP_IMAGE) .
+	docker buildx build --rm --tag $(IMAGE_NAME) .
 
 docker-push:
 	 docker push $(GCP_IMAGE)
 
 docker-run:
-	docker run --tty --publish 8080:8080 --name $(CONTAINER_NAME) --rm $(GCP_IMAGE)
+	docker run --tty --publish 3000:8080 --name $(CONTAINER_NAME) --rm $(IMAGE_NAME)
 
 docker-stop:
 	docker stop $(CONTAINER_NAME)

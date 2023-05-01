@@ -1,14 +1,14 @@
 # build
-FROM node:15.14.0-alpine3.10 as build
+FROM node:18.16-alpine3.16 as build-ui
 
 WORKDIR /srv
 
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 COPY package.json .
 COPY yarn.lock .
 
-RUN yarn
+RUN yarn --pure-lockfile
 
 COPY tsconfig.json tsconfig.json
 COPY rollup.config.js rollup.config.js
@@ -17,12 +17,26 @@ COPY src src
 
 RUN yarn build:js
 
-# runtime
-FROM gcr.io/distroless/nodejs
+FROM node:18.16-alpine3.16 as build-server
 
 WORKDIR /srv
 
-COPY --from=build /srv /srv
+ENV NODE_ENV=production
+
+COPY package.json .
+COPY yarn.lock .
+
+RUN yarn --pure-lockfile
+
+# runtime
+FROM gcr.io/distroless/nodejs
+
+ENV NODE_ENV=production
+
+WORKDIR /srv
+
+COPY --from=build-ui /srv/public /srv/public
+COPY --from=build-server /srv/node_modules /srv/node_modules
 
 EXPOSE 8080
 
