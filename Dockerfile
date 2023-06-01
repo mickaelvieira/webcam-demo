@@ -1,5 +1,5 @@
 # build
-FROM node:18.16-alpine3.16 as build-ui
+FROM node:20.2-alpine3.16 as build-ui
 
 WORKDIR /srv
 
@@ -17,7 +17,7 @@ COPY src src
 
 RUN yarn build:js
 
-FROM node:18.16-alpine3.16 as build-server
+FROM node:20.2-alpine3.16 as build-server
 
 WORKDIR /srv
 
